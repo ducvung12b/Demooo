@@ -1,0 +1,30 @@
+{% extends 'myapp/base.html' %}
+
+{% block page %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <h2 style="padding-left: 40%;">Thông Tin Mới </h2>
+<div class="row">
+
+    {% for page in pages %}
+    <div class="col-md-4">
+        <div class="ibox" style="padding-top: 20px;">
+            <div class="ibox-content product-box" >
+                <div class="product-desc">
+                    <small class="text-muted">Đăng bởi: <b>{{ page.author.username }}</b> </small><!-- Hiển thị người đăng -->
+                    <br>  
+                    <a href="{%url 'detail' page.id %}" class="product-name"> {{page.title}}</a>  
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}    
+    
+       
+</div>
+</div>
+
+{% endblock page %}

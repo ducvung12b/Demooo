@@ -1,0 +1,33 @@
+{% extends "myapp/base.html" %}
+{%load static%}
+
+{% block search %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="row">
+    <div class="container">
+        <h4 style='padding-top:30px'>Bạn Đang Tìm Kiếm : {{searched}}</h4> <br/>
+    <div class="row">
+    {% for page in checks %}
+    <div class="col-md-4">
+        <div class="ibox" style="padding-top: 20px;">
+            <div class="ibox-content product-box" >
+                <div class="product-desc">
+                    <small class="text-muted">Đăng bởi: <b>{{ page.author.username }}</b> </small><!-- Hiển thị người đăng -->
+                    <br>  
+                    <a href="{%url 'detail' page.id %}" class="product-name"> {{page.title}}</a>  
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}    
+    
+</div>  
+</div>
+
+
+
+{% endblock search %}

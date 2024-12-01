@@ -1,0 +1,37 @@
+{% extends 'myapp/base.html' %}
+
+<!-- templates/user_list.html -->
+{% block user %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <h2 style="padding-left: 40%;">Thông Tin Mới</h2>
+    <div class="row">
+        {% for user in users %}
+        <div class="col-md-4">
+            <div class="ibox" style="padding-top: 20px;">
+                <div class="ibox-content product-box">
+                    <div class="product-desc">
+                        <small class="text-muted">Người Dùng: <b>{{ user.username }}</b></small>
+                        {% if user.id in following %}
+                            <div class="follow-btn" style="margin-top: 10px;">
+                                <form method="post" action="{% url 'unfollow_user' user.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Unfollow</button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="follow-btn" style="margin-top: 10px;">
+                                <form method="post" action="{% url 'follow_user' user.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Follow</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock user %}

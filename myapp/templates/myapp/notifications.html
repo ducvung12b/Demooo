@@ -1,0 +1,40 @@
+<!-- templates/notifications_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thông Báo</title>
+    {% comment %} <style>
+        .notification-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .notification-item {
+            background-color: rgb(216, 210, 203);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .unread {
+            font-weight: bold;
+        }
+        .notification-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style> {% endcomment %}
+</head>
+<body>
+    <h1>Thông Báo</h1>
+    <ul class="notification-list">
+        {% for notification in notifications %}
+        <li class="notification-item {% if not notification.read %}unread{% endif %}">
+            <a href="{% url 'detail' notification.page.id %}">
+                {{ notification.message }}<br>
+                <small>{{ notification.timestamp }}</small>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
